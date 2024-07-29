@@ -9,5 +9,4 @@ class UdemySpringWithMongoApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
