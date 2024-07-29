@@ -32,4 +32,15 @@ public class UserService {
 	public void delete(String id) {
 		this.userRepository.delete(findById(id));
 	}
+
+	public void update(String id, User entity) {
+		User user = this.userRepository.findById(id).orElseThrow(() -> new ObjectNotFoundException(id));
+		updateData(entity, user);
+		this.userRepository.save(user);
+	}
+
+	private void updateData(User entity, User user) {
+		if(entity.getName() != null) user.setName(entity.getName());
+		if(entity.getEmail() != null) user.setEmail(entity.getEmail());
+	}
 }
