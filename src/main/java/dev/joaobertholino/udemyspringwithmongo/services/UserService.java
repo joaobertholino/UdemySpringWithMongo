@@ -2,9 +2,11 @@ package dev.joaobertholino.udemyspringwithmongo.services;
 
 import dev.joaobertholino.udemyspringwithmongo.domain.User;
 import dev.joaobertholino.udemyspringwithmongo.repository.UserRepository;
+import dev.joaobertholino.udemyspringwithmongo.services.exceptions.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -16,5 +18,10 @@ public class UserService {
 
 	public List<User> findAll() {
 		return this.userRepository.findAll();
+	}
+
+	public User findById(String id) {
+		Optional<User> user = this.userRepository.findById(id);
+		return user.orElseThrow(() -> new ObjectNotFoundException(id));
 	}
 }
