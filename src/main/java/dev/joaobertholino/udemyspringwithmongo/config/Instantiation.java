@@ -1,5 +1,6 @@
 package dev.joaobertholino.udemyspringwithmongo.config;
 
+import dev.joaobertholino.udemyspringwithmongo.dataaccessobject.AuthorDTO;
 import dev.joaobertholino.udemyspringwithmongo.domain.Post;
 import dev.joaobertholino.udemyspringwithmongo.domain.User;
 import dev.joaobertholino.udemyspringwithmongo.repository.PostRepository;
@@ -33,8 +34,8 @@ public class Instantiation implements CommandLineRunner {
 		User u3 = new User("Nicolas Emanuel", "nicolas@email.com");
 		this.userRepository.saveAll(Arrays.asList(u1, u2, u3));
 
-		Post p1 = new Post(LocalDateTime.parse("2020-07-23T15:01:00Z", dateTimeFormatter), "First day", "I wait for you", u1);
-		Post p2 = new Post(LocalDateTime.parse("2022-09-03T15:01:00Z", dateTimeFormatter), "Last day", "Goodbye", u1);
+		Post p1 = new Post(LocalDateTime.parse("2020-07-23T15:01:00Z", dateTimeFormatter), "First day", "I wait for you", new AuthorDTO(u1));
+		Post p2 = new Post(LocalDateTime.parse("2022-09-03T15:01:00Z", dateTimeFormatter), "Last day", "Goodbye", new AuthorDTO(u1));
 		this.postRepository.saveAll(Arrays.asList(p1, p2));
 	}
 }
